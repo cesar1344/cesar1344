@@ -112,10 +112,82 @@ class Circulo extends Figura {
 Encapsulamiento	Si pusieras (private) a (precio) y (cantidad), y solo accedieras con métodos
 Herencia	Si crearas (VentaConDescuento) (extends Venta)
 Polimorfismo	Si (Venta) y (VentaConDescuento) calcularan el total de forma diferente con el mismo método
-Abstracción	Si solo mostraras (mostrarDetalle) sin que el usuario necesite saber cómo se calcula el total por dentro
+Abstracción	Si solo mostraras (mostrarDetalle) sin que el usuario necesite saber cómo se calcula el total por dentro.
 
+(Tema-encapsulamiento)
 
+. El encapsulamiento en Java es el pilar de la (POO) que consiste en ocultar los datos internos de una clase y protegerlos, permitiendo el acceso solo de métodos controlados (generalmente llamados GETTERS Y SETTERS). 
 
+La idea principal
+-Es como un capsula de medicina por fuera ves algo simple, pero no puedes tocar directamente lo que hay adentro, solo puedes interactuar con ella de la forma en que está permitida. 
 
+-Cómo se hace el código. 
 
+. Paso 1 : Los atributos se declaran como (Private) nadie de afuera los puede tocar directamente. 
+
+- Ejemplo. 
+
+-class Cuenta {
+    private double saldo;
+}
+
+. Paso 2 : Se crean métodos públicos para poder leer o modificar ese atributo de forma controlada
+
+- Ejemplo. 
+
+. class Cuenta {
+    private double saldo;
+
+    // Getter: para LEER el saldo
+    public double getSaldo() {
+        return saldo;
+    }
+
+    // Setter: para MODIFICAR el saldo, con control
+    public void setSaldo(double saldo) {
+        if (saldo >= 0) {  // evita que quede en negativo
+            this.saldo = saldo;
+        }
+    }
+
+. Por que sirve esto 
+- Sin encapsulamiento, cualquiera podría hacer esto y romper la lógica de tu programa. 
+
+- Ejemplo 
+
+- cuenta.saldo = -5000; // ❌ esto no debería pasar
+
+- Aplicado a tu programa de la venta 
+  Ahora mismo tus atributos en la clase (VENTA) están así  (sin encapsular)
+
+  -Ejemplo. 
+  
+class Venta {
+    String cliente;
+    double precio;
+    int cantidad;
+}
+  
+
+Con encapsulamiento se vería así.
+
+-Ejemplo. 
+
+-class Venta {
+    private String cliente;
+    private double precio;
+    private int cantidad;
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        if (precio > 0) {  // no permite precios negativos
+            this.precio = precio;
+        }
+    }
+}
+
+En resumen: encapsulamiento = private en los atributos + getters/setters públicos para controlar el acceso, protegiendo los datos de cambios indebidos.
         
