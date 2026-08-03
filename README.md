@@ -14,7 +14,7 @@ Componentes JAVA METODOS.
 
 (1.) Qué son los pilares (POO) 
 
-Los 4 pilares de la programación orientada a objetos (POO) son los principios fundamentales sonre en los que se construye este paradigma. 
+Los 4 pilares de la programación orientada a objetos (POO) son los principios fundamentales sobre en los que se construye este paradigma. 
 
 - Encapsulamiento: Consiste en ocultar los datos internos de una clase y controla como se accede a ellos, generalmente usando atributos (PRIVATE) y métodos públicos (GET/ SET) para acceder o modificarlos.  
 
