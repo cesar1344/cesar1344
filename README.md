@@ -190,4 +190,70 @@ Con encapsulamiento se vería así.
 }
 
 En resumen: encapsulamiento = private en los atributos + getters/setters públicos para controlar el acceso, protegiendo los datos de cambios indebidos.
+
+
+- interfaces en el contexto POO
+. En programación orientada a objetos (POO), una interfaz es un contrato que define que métodos deben tener un clase, sin especificar como los implementa. Es una forma de decir "cualquier clase que cumpla este contrato debe de tener estos comportamientos", sin importar los detalles internos. 
+
+
+.Idea central. 
+- Una interfaz declara firmas de métodos (nombre, parámetros, tipo de retornos) pero no su lógica. 
+- Las clases que "implementan" la interfaz están obligadas a definir el cuerpo de esos métodos. 
+- permite que distintas clases sean intercambiables si comparten la misma interfaz, aunque su implementación interna sea totalmente distinta. 
+
+. Para que sirve ?
+
+1. Desacoplamiento: el código que usa la interfaz no necesita saber que clase concreta hay detrás.
+
+2. Polimorfismo: Puedes tratar los objetos de clases distintas de manera uniforme si implementan las misma interfaz. 
+
+3. Extensibilidad: puedes agregar nuevas implementaciones sin tocar el código que ya usa la interfaz. 
+
+4. Testing: facilita crear versiones "falsas" (mocks) de una dependencia para pruebas. 
+
+.En Python (que es un stack actual)
+- Phython no tiene interfaces como java o c#, pero se logra el mismo efecto con clases abstractas (ABC)
+
+- Ejemplo : 
+
+
+from abc import ABC, abstractmethod
+
+class NodoBlockchain(ABC):
+    @abstractmethod
+    def validar_bloque(self, bloque: dict) -> bool:
+        ...
+
+    @abstractmethod
+    def transmitir_transaccion(self, tx: dict) -> None:
+        ...
+
+class NodoHTTP(NodoBlockchain):
+    def validar_bloque(self, bloque: dict) -> bool:
+        # lógica real de validación
+        return True
+
+    def transmitir_transaccion(self, tx: dict) -> None:
+        # envío vía requests/httpx
+        pass
+
+-Aquí, NodoBlockchain es la interfaz (contrato); NodoHTTP es una implementación concreta. Cualquier otra clase (por ejemplo NodoWebSocket) podría implementar el mismo contrato de forma distinta, y el resto del sistema no necesitaría saber cuál está usando.
+
+- Aplicado a tu proyecto. 
+- En el sistema que estamos documentado (blockchain + FastAPI + Kivy), una interfaz sería puedan implementar. 
+
+- Definir un contrato CANALDENOTIFICACIONES que tanto WebSockets como HTTP polling puedan implementar.
+
+
+-Definir un contrato ALMACENAMIENTO para que hoy uses SQLite y mañana puedas cambiar otro motor sin reescribir la lógica del blockehain.
+
+
+1. Herramientas técnicas de abstracción (en programación / ingeniería de software)****
+
+- Son los mecanismos que usan el lenguaje o una metodología para ocultar la complejidad y exponer solo lo esencial. Siguiendo el hilo de POO que veíamos, las principales cuales son: 
+
+
+
+
+
         
